@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <div id="div">
+    <h1>获取元素</h1>
+    <p>元素内容</p>
+  </div>
+</body>
+</html>
+<script>
+  var box = document.getElementById('div');
+  console.log(box.innerHTML);  // 使用innerHTML输出元素开始到结束的所有内容
+  console.log(box.innerText);  // 使用innerText输出去除所有标签的元素内容
+  console.log(box.textContent);  // 使用textContent输出去除所有标签且保留格式的元素内容
+</script>

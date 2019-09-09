@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="i" class="iii" name="ii" value="iiii" fy="200">
+  <input type="button" id="a" value="获取">
+  <input type="button" id="b" value="修改">
+</body>
+</html>
+
+<script>
+  /**
+   * [onclick description]
+   * @param  {[type]} argument [description]
+   * @return {[type]}          [description]
+   */
+  
+  var button_a = document.getElementsByTagName('input')[0];
+
+  /*
+  该函数为鼠标点击效果， 获取文本框的各个属性值
+  由于class是关键字，要获取文本框class属性值，使用className来获取
+  自定义属性值用getAttribute获取
+   */
+  a.onclick = function () {
+    console.log(button_a.name);
+    console.log(button_a.id);
+    console.log(button_a.value);
+    console.log(button_a.className);
+    console.log(button_a.getAttribute('fy'));
+  }
+
+  /*
+  该函数为鼠标点击效果，修改文本框的各个属性值
+  自定义属性值用setAttribute修改
+   */
+  b.onclick = function () {
+    button_a.name = "c";
+    button_a.id = "cc";
+    button_a.value = "ccc";
+    button_a.className = "cccc";
+    button_a.setAttribute('fy',400);
+  }
+</script>
