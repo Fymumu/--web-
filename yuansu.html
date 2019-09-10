@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <h2 style="width:200px; height:80px; background-color:red">获取元素样式</h2>
+  <input type="button" id="inputA" value="获取样式">
+  <input type="button" id="inputB" value="修改样式">
+</body>
+<script>
+/**
+ * 内容：编写修改CSS样式的JS代码
+ * 变量名：AA，(用于获取HTML标签)
+ * 函数：匿名函数，HTML标签ID名+onclick编写
+ */
+var AA = document.getElementsByTagName('h2')[0];
+
+inputA.onclick = function () {
+  console.log(AA.style.width);
+  console.log(AA.style.height);
+  console.log(AA.style.backgroundColor);  // 此处background-color为复合型样式，改写成第二个首字母大写的方式
+}
+
+inputB.onclick = function () {
+  AA.style.width = '250px';
+  AA.style.height = '250px';
+  AA.style.backgroundColor = '#30AB11';
+  AA.style.color = '#fff';  // 此处添加CSS样式
+}
+
+/*
+jsDOM操作CSS样式，只能操作内联样式
+修改样式，如果没有这个样式，会添加样式
+ */
+</script>
+</html>
