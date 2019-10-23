@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		table {
+			border: solid #02cb90; 
+		}
+
+		.td2 {
+			height: 50px;
+		}
+
+		.td1 {
+			text-align: right;
+		}
+
+		.td3 {
+			margin-left: 10px;
+		}
+	</style>
+</head>
+<body>
+	<form action="">
+		<table align="center" border="1" cellspacing="0" cellpadding="0">
+			<tr>
+				<td colspan="2" align="center" size="80em" class="td2">注册用户</td>
+			</tr>
+			<!--用户名-->
+			<tr height="40">
+				<td class="td1">用户名：</td>
+				<td>
+					<input type="text" id="user_Name" class="td3">
+					<span id="name_Span">* 字母开头，6位至16位！</span>
+				</td>
+			</tr>
+			<!--密码-->
+			<tr height="40">
+				<td width="100px" class="td1">密码：</td>
+				<td>
+					<input type="password" id="user_PassWord" class="td3">
+					<span id="passWord_Span">* 请输入以字母开头的6至16位密码！</span>
+				</td>
+			</tr>
+			<!--电话-->
+			<tr height="40">
+				<td width="100px" class="td1">电话号码：</td>
+				<td>
+					<input type="text" id="user_Phone" class="td3">
+					<span id="phone_Span"></span>
+				</td>
+			</tr>
+			<!--邮箱-->
+			<tr height="40">
+				<td width="100px" class="td1">电子邮箱：</td>
+				<td>
+					<input type="text" id="user_Emeil" class="td3">
+					<span id="emeil_Span"></span>
+				</td>
+			</tr>
+			<!-- 身份证号 -->
+			<tr height="40">
+				<td width="100px" class="td1">身份证号码：</td>
+				<td>
+					<input type="text" id="user_Id" class="td3">
+					<span id="id_Span"></span>
+				</td>
+			</tr>
+			<!-- 性别 -->
+			<tr height="40">
+				<td width="100px" class="td1">性别：</td>
+				<td>
+					<input type="radio" name="1" class="td3">男
+					<input type="radio" name="1">女
+				</td>
+			</tr>
+			<!-- 提交 -->
+			<tr height="40px">
+				<td colspan="2" align="center">
+					<input type="submit" id="user_Submit">
+					<input type="reset" value="重置">
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
+<script>
+	/**
+	 * 点击函数，处理表单验证功能
+	 */
+	user_Submit.onclick = function() {
+		
+		if (verify() != true)
+			return false;
+	}
+	/**
+	 * 处理表单验证的函数
+	 * 该函数在点击函数里调用
+	 */
+	function verify() {
+		/*
+		用户名验证
+		 */
+		var userName = document.getElementById('user_Name');
+		var nameSpan = document.getElementById('name_Span');
+		var userNameReg = /^[a-zA-Z]\w{5,15}$/;
+		/*
+		if条件判断语句，使用test方法判定userName和userReg是否匹配
+		如果匹配，修改span的内容，显示输入正确
+		如果不匹配，修改span的内容，显示输入错误，请重新输入
+		 */
+		if (userNameReg.test(userName.value)) 
+			nameSpan.innerHTML = "<span style='color:green'>✔ 输入正确！</span>";
+		else 
+			nameSpan.innerHTML = "<span style='color:red'>❌ 输入错误，请重新输入！</span>";
+
+		/*
+		密码验证
+		 */
+		var userPassWord = document.getElementById('user_PassWord');
+		var passWordSpan = document.getElementById('passWord_Span');
+		var passWordReg = /^[a-zA-Z]\w{5,15}$/;
+		if (passWordReg.test(userPassWord.value))
+			passWordSpan.innerHTML = "<span style='color:green'>✔ 输入正确！</span>";
+		else
+			passWordSpan.innerHTML = "<span style='color:red'>❌ 请输入正确密码格式！";
+
+		/*电话号码验证*/
+		var userPhone = document.getElementById('user_Phone');
+		var phoneSpan = document.getElementById('phone_Span');
+		var phoneReg = /^1[356789]\d{9}$/;
+		if (phoneReg.test(userPhone.value))
+			phoneSpan.innerHTML = "<span style='color:green'>✔</span>";
+		else
+			phoneSpan.innerHTML = "<span style='color:red'>❌ 请输入正确手机号！<span>";
+
+		/*
+		电子邮箱验证
+		 */
+		var userEmeil = document.getElementById('user_Emeil');
+		var emeilSpan = document.getElementById('emeil_Span');
+		var emeilReg = /^[a-zA-Z0-9]+@[a-zA-Z0-9_-]+([\.a-zA-Z0-9]+)$/;
+		/*
+		把电子邮箱看成两大部分
+		前部由数字，英文组成，纯数字，纯英文
+		后部是邮箱域名，163邮箱有vip邮箱，且用户基数大，其后部是vip.163.com的形式，因此后部匹配不能只匹配一次.
+		中间的@可以直接匹配，这个是固定死，没有%163这样的格式
+		 */
+		if (emeilReg.test(userEmeil.value))
+			emeilSpan.innerHTML = "<span style='color:green'>✔</span>";
+		else
+			emeilSpan.innerHTML = "<span style='color:red'>❌ 请输入正确电子邮箱！</span>";
+
+		/*
+		身份证验证
+		 */
+		var userId = document.getElementById('user_Id');
+		var idSpan = document.getElementById('id_Span');
+		var idReg = /(^\d{15}$)|(^\d{17}[\d|X]$)/;
+		/*
+		询问霂姐姐，得知身份证需要考虑三种情况，
+		第一种，第一代身份证，即十五位，
+		第二种，第二代身份证，即十八位，纯数字
+		第三种，第二代身份证，即十八位，末尾是罗马数字X
+		因此编写成/(^\d{15}$)|(^\d{18}$)|(^\d{17}[X]$)/;
+		其实这样也不易读，所以优化成/(^\d{15}$)|(^\d{17}[\d|X]$)/;
+		关于为什么要写两次括号，如果是/^\d{15}$|\d{17}[\d|X]$/;这样的格式
+		其实也可以运行，但是会匹配正确十六位和十七位的身份证号码
+		但是并没有十六位和十七位的身份证号码
+		这样糅合了逻辑性，提高了易读性
+		霂姐辣鸡
+		 */
+		if (idReg.test(userId.value))
+			idSpan.innerHTML = "<span style='color:green'>✔</span>";
+		else
+			idSpan.innerHTML = "<span style='color:red'>❌ 请输入正确身份证号码！</span>";
+	}
+</script>
